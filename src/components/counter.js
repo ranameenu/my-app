@@ -21,13 +21,14 @@ handleIncrement=()=>{
       <span className={classes} style={{marginRight: 10, paddingtop:5}}> {this.formatCount()}</span>
       <button 
       className="btn btn-secondary btn-sm" 
-      onClick={this.handleIncrement} 
+
+      onClick={() => {this.props.onIncrement()} }
       style={{marginRight: 10}}>
         Increment
         </button> 
       <button 
       className="btn btn-danger btn-sm" 
-      onClick={this.props.onDelete} 
+      onClick={()=>this.props.onDelete(this.props.id)} 
       style={{marginRight: 10}}>
         Delete
         </button>
