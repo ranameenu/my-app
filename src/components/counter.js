@@ -1,36 +1,43 @@
 import React, { Component } from 'react';
 class Counter extends Component {
   state = {
-    count: 0,
-    
+    value: this.props.value,
+    id: this.props.id,
   }
 
   
-handleIncrement=product=>{
-  console.log(product);
- this.setState({count: this.state.count+1});
+handleIncrement=()=>{
+ this.setState({value: this.state.value+1});
 }
-handleDecrement=()=> {
-  if(this.state.count===0) return "Add Somethinmg in Card";
-  this.setState({count: this.state.count-1});
-}
+
 
   render() {
     let classes = "badge m-2 badge-"
-    classes += this.state.count===0 ? "warning" : "primary";
+    classes += this.state.value === 0 ? "warning" : "primary";
 
     return (
     <div> 
-      <span className="badge badge-primary m-2" style={{marginRight: 10, paddingtop:5}}> {this.formatCount()}</span>
-      <button className="btn btn-secondary btn-sm" onClick={()=>this.handleIncrement(product)} style={{marginRight: 10}}>+</button> 
-      <button className="btn btn-secondary btn-sm" onClick={this.handleDecrement}>-</button>
+      <h5>Item #{this.state.id}</h5>
+      <span className={classes} style={{marginRight: 10, paddingtop:5}}> {this.formatCount()}</span>
+      <button 
+      className="btn btn-secondary btn-sm" 
+      onClick={this.handleIncrement} 
+      style={{marginRight: 10}}>
+        Increment
+        </button> 
+      <button 
+      className="btn btn-danger btn-sm" 
+      onClick={this.props.onDelete} 
+      style={{marginRight: 10}}>
+        Delete
+        </button>
     </div>
     )
   }
   formatCount()
   {
-    let count = this.state.count;
-    return this.state.count===0 ? "zero" : count;
+    let value = this.state.value;
+    return this.state.value===0 ? "zero" : value;
   }
 
 
